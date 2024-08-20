@@ -1,10 +1,7 @@
 import { Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
-import { UserRequest } from '../types/common';
 
-export const e = (
-  action: (req: Request, res: Response, next?: Function) => Promise<void>
-) => {
+export const e = (action: (req: Request, res: Response) => Promise<void>) => {
   return async (req: Request, res: Response) => {
     try {
       await action(req, res);
