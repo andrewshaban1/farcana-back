@@ -1,0 +1,5 @@
+/dist
+/node_modules
+
+#! Supposed to be ignored by GIT, but for the testing assignment purpose is included into remote repository
+# .env
