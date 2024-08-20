@@ -5,6 +5,7 @@ export default {
   env: getEnvVar('NODE_ENV', 'development'),
   port: getEnvVar('PORT', 8000),
   frontEndUrl: getEnvVar('FRONT_END_URL'),
+  backEndHost: getEnvVar('BACK_END_HOST'),
   jwt: {
     secret: getEnvVar('JWT_SECRET'),
   },
