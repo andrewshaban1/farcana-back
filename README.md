@@ -26,10 +26,25 @@ Follow these steps to get your development environment set up:
 
 ### `docker-compose up --build`
 
-4. While database container is up and running, run database migrations:
+4. While database container is up and running, in a new terminal window run database migrations from the project's root:
 
 ### `npm run migrate`
 
 5. Start development server:
 
 ### `npm run dev`
+
+## Tests
+
+There are automatical test for every endpoint with different scenarios. It ueses 'supertest' and 'jest' libraries
+Follow these steps to perform tests.
+
+1. Ensure you set the project up. During tests the server should be down.
+
+2. Start the database container:
+
+### `docker-compose up`
+
+3. While database container is up and running, to perform test suit run the following command in a new terminal window from the project's root:
+
+### `npm run test`

@@ -34,7 +34,7 @@ export const AuthMiddleware = async (
     req.user = user;
     next();
   } catch (error: any) {
-    console.error(error);
+    console.error(error.status ? error.message : error);
 
     res
       .status(error.status || StatusCodes.UNAUTHORIZED)

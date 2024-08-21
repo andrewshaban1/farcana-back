@@ -52,4 +52,5 @@ User.init(
 User.hasMany(Data, {
   sourceKey: 'id',
   foreignKey: 'user_id',
+  as: 'data',
 });

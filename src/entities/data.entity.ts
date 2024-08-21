@@ -7,7 +7,6 @@ import {
 } from 'sequelize';
 
 import { sequelize } from '../db/init';
-import { User } from './user.entity';
 
 export class Data extends Model<
   InferAttributes<Data>,
@@ -40,5 +39,3 @@ Data.init(
     updatedAt: false,
   }
 );
-
-// Data.belongsTo(User);

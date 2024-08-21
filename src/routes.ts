@@ -1,8 +1,9 @@
 import { Router } from 'express';
-import { HealthCheck } from './controllers/test.controller';
-import { Login, Profile, Register } from './controllers/auth.controller';
+import { HealthCheck } from './controllers/health.controller';
+import { Login, Register } from './controllers/auth.controller';
 import { e } from './utils/trycatch';
 import { AuthMiddleware } from './middleware/auth.middleware';
+import { Profile } from './controllers/data.contorller';
 
 const router = Router();
 router.get('/', e(HealthCheck));

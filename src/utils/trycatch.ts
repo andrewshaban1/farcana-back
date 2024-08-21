@@ -12,7 +12,7 @@ export const e = (action: (req: Request, res: Response) => Promise<void>) => {
     try {
       await action(req, res);
     } catch (error: any) {
-      console.error(error);
+      console.error(error.status ? error.message : error);
       res
         .status(error.status || StatusCodes.INTERNAL_SERVER_ERROR)
         .json({ message: error.message });

@@ -7,7 +7,7 @@ export default class DataService {
   async getUserProfileDetails(userId: string): Promise<User> {
     const userProfile = await User.findOne({
       where: { id: userId },
-      include: { model: Data },
+      include: { model: Data, as: 'data' },
     });
     if (!userProfile) {
       throw new HttpError(
