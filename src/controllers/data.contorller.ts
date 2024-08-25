@@ -16,5 +16,6 @@ export const Profile = async (req: Request, res: Response) => {
   const dataService = new DataService();
 
   const userProfile = await dataService.getUserProfileDetails(userId);
-  res.status(StatusCodes.OK).json(userProfile);
+  const userProfileResponse = _.omit(userProfile.dataValues, ['password_hash']);
+  res.status(StatusCodes.OK).json(userProfileResponse);
 };

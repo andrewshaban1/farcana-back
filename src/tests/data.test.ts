@@ -12,6 +12,7 @@ describe('User Profile', () => {
           username: 'username',
           email: 'user@email.com',
           password: 'testPassword',
+          data: 'data',
         })
         .expect(201);
 
@@ -63,6 +64,7 @@ describe('User Profile', () => {
           username: 'username',
           email: 'user@email.com',
           password: 'testPassword',
+          data: 'data',
         })
         .expect(201);
 

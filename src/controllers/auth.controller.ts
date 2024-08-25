@@ -6,8 +6,8 @@ import AuthService from '../services/auth.service';
 import { HttpError } from '../utils/error';
 
 export const Register = async (req: Request, res: Response) => {
-  const { username, email, password } = req.body;
-  if (!username || !email || !password) {
+  const { username, email, password, data } = req.body;
+  if (!username || !email || !password || !data) {
     throw new HttpError(
       StatusCodes.BAD_REQUEST,
       'You have not provided all necessary properties'
@@ -15,7 +15,7 @@ export const Register = async (req: Request, res: Response) => {
   }
 
   const authService = new AuthService();
-  const user = await authService.createUser(username, email, password);
+  const user = await authService.createUser(username, email, password, data);
 
   const userResponse = _.omit(user.dataValues, ['password_hash']);
   res.status(StatusCodes.CREATED).json(userResponse);
@@ -31,9 +31,13 @@ export const Login = async (req: Request, res: Response) => {
   }
 
   const authService = new AuthService();
-  const token = await authService.loginUser(username, password);
+  const { token, user } = await authService.loginUser(username, password);
 
-  res.cookie('jwt', token, { httpOnly: true, maxAge: 24 * 60 * 60 * 1000 }); // maxAge = 1 day
-
-  res.status(StatusCodes.OK).json({ message: 'Logged in!' });
+  res.cookie('jwt', token, {
+    httpOnly: true,
+    maxAge: 24 * 60 * 60 * 1000,
+    sameSite: 'lax',
+  }); // maxAge = 1 day
+  const userResponse = _.omit(user.dataValues, ['password_hash']);
+  res.status(StatusCodes.OK).json(userResponse);
 };

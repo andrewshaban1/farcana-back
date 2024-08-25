@@ -10,7 +10,7 @@ import { HttpError } from '../utils/error';
 export const AuthMiddleware = async (
   req: UserRequest,
   res: Response,
-  next: Function
+  next: () => void
 ) => {
   try {
     const jwt = req.cookies['jwt'];

@@ -12,6 +12,7 @@ describe('User Registration', () => {
           username: 'username',
           email: 'user@email.com',
           password: 'testPassword',
+          data: 'data',
         })
         .expect(201);
 
@@ -55,6 +56,7 @@ describe('User Registration', () => {
           username: 'username',
           email: 'user@email.com',
           password: 'testPassword',
+          data: 'data',
         })
         .expect(201);
 
@@ -68,6 +70,7 @@ describe('User Registration', () => {
           username: 'username',
           email: 'user@email.com',
           password: 'testPassword',
+          data: 'data',
         })
         .expect(400); // Expecting HTTP status 400 for bad request
 

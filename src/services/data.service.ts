@@ -1,4 +1,5 @@
 import { StatusCodes } from 'http-status-codes';
+
 import { Data } from '../entities/data.entity';
 import { User } from '../entities/user.entity';
 import { HttpError } from '../utils/error';
@@ -15,6 +16,7 @@ export default class DataService {
         `There is no user for ID ${userId}`
       );
     }
+
     return userProfile;
   }
 }

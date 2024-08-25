@@ -17,6 +17,7 @@ export class User extends Model<
   declare email: string;
   declare password_hash: string;
   declare created_at?: Date;
+  declare data?: any;
 }
 
 User.init(
@@ -53,4 +54,6 @@ User.hasMany(Data, {
   sourceKey: 'id',
   foreignKey: 'user_id',
   as: 'data',
+  onDelete: 'CASCADE',
+  onUpdate: 'CASCADE',
 });

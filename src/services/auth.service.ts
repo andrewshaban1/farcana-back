@@ -5,12 +5,14 @@ import { sign } from 'jsonwebtoken';
 import { User } from '../entities/user.entity';
 import { HttpError } from '../utils/error';
 import config from '../config/default.config';
+import { Data } from '../entities/data.entity';
 
 export default class AuthService {
   async createUser(
     username: string,
     email: string,
-    password: string
+    password: string,
+    data: string
   ): Promise<User> {
     let existingUser;
 
@@ -32,11 +34,30 @@ export default class AuthService {
       );
     }
     const password_hash = await bcrypt.hash(password, 10);
-    const user = await User.create({ username, email, password_hash });
+
+    const user = await User.create(
+      {
+        username,
+        email,
+        password_hash,
+        data: { data },
+      },
+      {
+        include: [
+          {
+            model: Data,
+            as: 'data',
+          },
+        ],
+      }
+    );
     return user;
   }
 
-  async loginUser(username: string, password: string): Promise<string> {
+  async loginUser(
+    username: string,
+    password: string
+  ): Promise<{ token: string; user: User }> {
     const user = await User.findOne({ where: { username } });
     if (!user) {
       throw new HttpError(
@@ -61,6 +82,6 @@ export default class AuthService {
     };
 
     const token = sign(payload, config.jwt.secret);
-    return token;
+    return { token, user };
   }
 }

@@ -13,6 +13,7 @@ describe('User Login', () => {
           username: 'username',
           email: 'user@email.com',
           password: 'testPassword',
+          data: 'data',
         })
         .expect(201);
 
@@ -28,6 +29,7 @@ describe('User Login', () => {
         })
         .expect(200);
 
+      expect(res2.body).toHaveProperty('id');
       // Check if the "Set-Cookie" header is set
       expect(res2.headers['set-cookie']).toBeDefined();
 
@@ -58,6 +60,7 @@ describe('User Login', () => {
           username: 'username',
           email: 'user@email.com',
           password: 'testPassword',
+          data: 'data',
         })
         .expect(201);
 
@@ -82,7 +85,7 @@ describe('User Login', () => {
     }
   });
 
-  it('Should not bad request response when not all credentials are provided', async () => {
+  it('Should be bad request response when not all credentials are provided', async () => {
     const res = await request(app)
       .post('/login')
       .send({

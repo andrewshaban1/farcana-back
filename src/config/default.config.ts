@@ -1,7 +1,7 @@
 import dotenv from 'dotenv';
 dotenv.config({ path: ['.env'] });
 
-export default {
+const config = {
   env: getEnvVar('NODE_ENV', 'development'),
   port: getEnvVar('PORT', 8000),
   frontEndUrl: getEnvVar('FRONT_END_URL'),
@@ -16,6 +16,8 @@ export default {
     host: getEnvVar('POSTGRES_HOST', 'localhost'),
   },
 };
+
+export default config;
 
 function getEnvVar(
   key: string,
